@@ -1,7 +1,10 @@
-This is a selenium and jest starter file, intended to be used for UI Automation.
+#This is a test framework build using Selenium, Jest, ChromeDriver and TypeScript. 
 
-It comes with jest, typescript, selenium, chromeDriver, and gechoDriver.
+NOTE: At the time of writing this, ChromeDriver is updated to v104 and should support up to Google Chrome v109. Occasionally chromedriver and Chrome don't play well together, and if you get an error related to either, it might be necessary to downgrade Chorme or upgrade Chromedriver. 
 
-The default files have a google model, base page, and a single test file.
+The file structure is as follows:
+1) The root file for this project is the basePage.ts file, which includes a constructor along with some generic Selenium driver methods. 
+2) A file called hudlModel.ts contains a constructor, a class instance, a few variables, a few methods, and a few assertions used to create tests.
+3) The test file is inside a hudlLoginTests folder. To run the tests, run ```npx jest``` in your terminal from the seleniumStarter file.
 
-The test uses a constructor to create a new Google object, calls a navigate function from the base page on the Google object, and then in the test, it asserts that seliunium was able to render the page.  
+  
