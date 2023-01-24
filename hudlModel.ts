@@ -11,12 +11,16 @@ export class Hudl extends BasePage{
         beforeEach(async ()=>{
             await this.navigate()
         });
-        afterEach(async ()=>{
-            await this.driver.manage().deleteAllCookies();
-        });
+        // afterEach(async ()=>{
+        //     await this.driver.manage().deleteAllCookies();
+        // });
         afterAll( async ()=>{
             await this.quit();
         });
+    }
+
+    async resetCookies(){
+        await this.driver.manage().deleteAllCookies();
     }
 
 
@@ -109,6 +113,5 @@ export class Hudl extends BasePage{
             throw(e)
         }
     }
-
 
 }
