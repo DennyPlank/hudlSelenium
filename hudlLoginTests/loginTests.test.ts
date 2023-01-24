@@ -5,18 +5,28 @@ describe(('Hudl login tests'), ()=>{
     
     hudl.hudlSetupAndTeardown()
 
-    // IMPORTANT - These vairables must be changed to valid credentials in order to run successful tests!
-    let validEmail = "Change me"
-    let validPassword = "Change me"
+    /* NOTICE: These variables must be changed to valid credentials in order to run passing tests! */
+    let validEmail = "Change Me"
+    let validPassword = "Change Me"
   
-    test('A valid user can log in ', async ()=>{
-        await hudl.loginWithValidCreds(validEmail, validPassword)
+    test('A valid user can log in with valid credentials ', async ()=>{
+        await hudl.loginAttempt(validEmail, validPassword)
         
-        // Assertions
-        await hudl.assertLoggedInValid()
+        // Assert
+        await hudl.assertLoggedIn()
     });
 
-    test('A user can log out', async ()=>{
-        expect(5).toBe(5)
+    test('A user cannot log in with invalid credentials', async ()=>{
+        await hudl.loginAttempt("Invalid Email Here", "Invalid Password ")
+
+        // Assert
+        await hudl.assertLoginFailed()
+    })
+
+    test('A user can log out after loging in', async ()=>{
+        await hudl.logoutAttempt(validEmail, validPassword)
+        
+        // Assert
+        await hudl.assertLoggedOut()
     })
 });
