@@ -7,4 +7,4 @@ The file structure is as follows:
 2) A file called hudlModel.ts contains a constructor, a class instance, a few variables, a few methods, and a few assertions used to create tests.
 3) The test file is inside a hudlLoginTests folder. To run the tests, run ```npx jest``` in your terminal from the seleniumStarter file.
 
-  
+All code by Dennis Plank @ www.linkedin.com/in/dennisplank  
