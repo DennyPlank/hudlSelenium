@@ -1,11 +1,7 @@
 import {By} from "selenium-webdriver";
 import { BasePage } from "./basePage";
 
-
 export class Hudl extends BasePage{
-    searchBar: By = By.name('q');
-    reseults: By = By.id('rso');
-
     constructor() {
         super({url: "https://www.hudl.com"})
     }
@@ -24,11 +20,35 @@ export class Hudl extends BasePage{
 
     // Login button at the top right hand corner of the home page 
     loginHomeButton: By = By.xpath("//a[@class='mainnav__btn mainnav__btn--primary']");
-    
 
+    // Login page form inputs
+    loginFormEmail: By = By.xpath("//input[@id='email']")
+    loginFormPassword: By = By.xpath("//input[@id='password']")
+    loginFormSubmitButton: By = By.xpath("//button[@id='logIn']")
+
+    // Assertion variable to see if we are logged in
+    loggedInCheck: By = By.xpath("//div[@class='hui-globaluseritem__display-name']")
     
-    async loginWithValidCreds(username: string, password: string) {
+    
+    
+    async loginWithValidCreds(email: string, password: string) {
         await (await this.getElement(this.loginHomeButton)).click()
-        await this.sleep(5000);
+        await (await this.getElement(this.loginFormEmail)).sendKeys(email)
+        await (await this.getElement(this.loginFormPassword)).sendKeys(password)
+        await (await this.getElement(this.loginFormSubmitButton)).click()
+        await this.sleep(1000)
     }
+    
+    // Assertions below
+    
+    // Asserts that we are logged in
+    async assertLoggedInValid() {
+        try {
+            await this.driver.findElement(this.loggedInCheck)
+        } catch (e) {
+            console.log("Log in assertion error")
+        } finally {
+            expect(this.driver.findElement(this.loggedInCheck).isDisplayed).not.toBeFalsy();
+        }
+    } 
 }
