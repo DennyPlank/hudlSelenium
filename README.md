@@ -1,6 +1,6 @@
 This is a test framework build using Selenium, Jest, ChromeDriver and TypeScript. 
 
-NOTE: At the time of writing this, ChromeDriver is updated to v104 and should support Google Chrome v109. Occasionally, chromedriver and Chrome don't play well together, and if you get an error related to either it might be necessary to downgrade Chrome or upgrade Chromedriver to match. 
+NOTE: At the time of writing this, ChromeDriver is updated to v105 and should support Google Chrome v109. Occasionally, chromedriver and Chrome don't play well together, and if you get an error related to either it might be necessary to downgrade Chrome or upgrade Chromedriver to match. 
 
 *In order to run passing tests, you must change the two variables located in hudlLoginTests.test.ts to valid login credentials*
 
