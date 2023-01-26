@@ -7,6 +7,6 @@ NOTE: At the time of writing this, ChromeDriver is updated to v104 and should su
 The file structure is as follows:
 1) The root file for this project is the basePage.ts file, which includes a constructor along with some generic Selenium driver methods. 
 2) A file called hudlModel.ts contains a constructor, a class instance, a few variables, a few methods, and a few assertions used to create tests.
-3) The test file is inside a hudlLoginTests folder. To run the tests, run ```npx jest``` in your terminal from the seleniumStarter file.
+3) The test file is inside a hudlLoginTests folder. To run the tests, run ```npx jest``` in your terminal from the parent folder.
 
 All code by Dennis Plank @ www.linkedin.com/in/dennisplank  
