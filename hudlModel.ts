@@ -11,14 +11,15 @@ export class Hudl extends BasePage{
         beforeEach(async ()=>{
             await this.navigate()
         });
-        // afterEach(async ()=>{
-        //     await this.driver.manage().deleteAllCookies();
-        // });
+        afterEach(async ()=>{
+            await this.driver.manage().deleteAllCookies();
+        });
         afterAll( async ()=>{
             await this.quit();
         });
     }
 
+    // Use this to reset your Cache whenever needed
     async resetCookies(){
         await this.driver.manage().deleteAllCookies();
     }
@@ -85,7 +86,7 @@ export class Hudl extends BasePage{
             /* This would be a good place to set a timeout */
             await this.driver.sleep(1000)
             await this.driver.findElement(this.loggedInCheckButton)
-            expect(this.driver.findElement(this.loggedInCheckButton).isDisplayed).not.toBeFalsy();
+            expect(await this.driver.findElement(this.loggedInCheckButton).isDisplayed()).toBeTruthy();
         } catch (e) {
             throw(e)
         }
@@ -95,22 +96,37 @@ export class Hudl extends BasePage{
     async assertLoggedOut() {
         try {
             /* This would be a good place to set a timeout */
-            await this.driver.sleep(1000)
+            await this.driver.sleep(500)
             await this.driver.findElement(this.loginHomeButtonCheck)
-            expect(this.driver.findElement(this.loginHomeButtonCheck).isDisplayed).not.toBeFalsy();
+            expect(await this.driver.findElement(this.loginHomeButtonCheck).isDisplayed()).toBeTruthy();
         } catch (e) {
             throw(e)
         }
     }
-    // Asserts that our login attemt got a UI error
-    async assertLoginFailed(){
+
+    
+    // Asserts that our login attempt got a UI error
+    async assertLoginFailedError(){
         try {
             /* This would be a good place to set a timeout */
-            await this.driver.sleep(1000)
+            await this.driver.sleep(500)
             await this.driver.findElement(this.invalidLogingError)
-            expect(this.driver.findElement(this.invalidLogingError).isDisplayed).not.toBeFalsy();
+            expect(await this.driver.findElement(this.invalidLogingError).isDisplayed()).toBeTruthy();
         } catch (e) {
             throw(e)
+        }
+    }
+    
+    //Asserts that we are NOT logged in
+    async assertNotLoggedIn(){
+        try {
+            /* This would be a good place to set a timeout */
+            await this.driver.sleep(500)
+
+            // This should throw an exception if we are not logged in
+            await this.driver.findElement(this.loggedInCheckButton)
+        } catch (e) {
+            expect(await this.driver.findElement(this.loginHomeButtonCheck).isDisplayed()).toBeTruthy();
         }
     }
 

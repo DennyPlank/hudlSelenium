@@ -9,22 +9,18 @@ describe(('Hudl login tests'), ()=>{
     let validEmail = "Change Me"
     let validPassword = "Change Me"
   
-    test('A valid user can log in with valid credentials ', async ()=>{
+    test('A user can log in with valid credentials ', async ()=>{
         await hudl.loginAttempt(validEmail, validPassword)
         
         // Assert
         await hudl.assertLoggedIn()
-        // Reset
-        await hudl.resetCookies()
     });
 
     test('A user cannot log in with invalid credentials', async ()=>{
         await hudl.loginAttempt("Invalid Email", "Invalid Password ")
 
         // Assert
-        await hudl.assertLoginFailed()
-        // Reset
-        await hudl.resetCookies()
+        await hudl.assertLoginFailedError()
     })
 
     test('A user can log out after loging in', async ()=>{
@@ -32,14 +28,21 @@ describe(('Hudl login tests'), ()=>{
         
         // Assert
         await hudl.assertLoggedOut()
-        // Reset
-        await hudl.resetCookies()
     })
 
-    test('A logged in user will stay logged in if the page is reloaded', async ()=>{
+    test('A user will stay logged in if the page is reloaded', async ()=>{
         await hudl.loginAttempt(validEmail, validPassword)
-        // This reloads the page and doesn't clear the cache
+        
+        // This reloads the page and before clearing cache
         await hudl.navigate()
         await hudl.assertLoggedIn()
+    })
+
+    test('A user is redirected to the homepage after logging out', async () => {
+        await hudl.logoutAttempt(validEmail, validPassword)
+        
+        //Assert 
+        await hudl.assertNotLoggedIn()
+        await hudl.assertLoggedOut()
     })
 });
