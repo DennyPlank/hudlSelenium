@@ -35,6 +35,8 @@ describe(('Hudl login tests'), ()=>{
         
         // This reloads the page and before clearing cache
         await hudl.navigate()
+
+        // Assert
         await hudl.assertLoggedIn()
     })
 

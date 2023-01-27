@@ -103,7 +103,6 @@ export class Hudl extends BasePage{
             throw(e)
         }
     }
-
     
     // Asserts that our login attempt got a UI error
     async assertLoginFailedError(){
