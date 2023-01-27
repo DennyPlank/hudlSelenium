@@ -123,8 +123,9 @@ export class Hudl extends BasePage{
             /* This would be a good place to set a timeout */
             await this.driver.sleep(500)
 
-            // This should throw an exception if we are not logged in
+            // This wont throw an exception if we're logged in and will trigger the expect below it
             await this.driver.findElement(this.loggedInCheckButton)
+            expect(await this.driver.findElement(this.loginHomeButtonCheck).isDisplayed()).toBeFalsy();
         } catch (e) {
             expect(await this.driver.findElement(this.loginHomeButtonCheck).isDisplayed()).toBeTruthy();
         }
