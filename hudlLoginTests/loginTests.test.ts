@@ -48,3 +48,5 @@ describe(('Hudl login tests'), ()=>{
         await hudl.assertLoggedOut()
     })
 });
+
+console.log("test ran")
